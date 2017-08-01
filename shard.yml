@@ -1,0 +1,15 @@
+name: tele
+version: 0.1.0
+
+authors:
+  - Vlad Faust <mail@vladfaust.com>
+
+crystal: 0.23.1
+
+license: MIT
+
+development_dependencies:
+  spec2:
+    path: ../spec2.cr
+    # github: waterlink/spec2.cr
+    # version: ~> 0.9
