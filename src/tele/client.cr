@@ -1,5 +1,6 @@
 require "http/client"
 require "uri"
+require "json"
 
 module Tele
   # A basic HTTP(S) Client for Telegam API

@@ -1,3 +1,4 @@
+require "../type"
 require "./message"
 require "./inline_query"
 require "./chosen_inline_result"
@@ -7,7 +8,7 @@ require "./pre_checkout_query"
 
 module Tele
   module Types
-    class Update
+    class Update < Type
       JSON.mapping({
         update_id:            {type: Int32},
         message:              {type: Message?},

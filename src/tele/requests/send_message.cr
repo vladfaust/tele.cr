@@ -1,4 +1,9 @@
 require "../request"
+require "../types/message"
+require "../types/inline_keyboard_markup"
+require "../types/reply_keyboard_markup"
+require "../types/reply_keyboard_remove"
+require "../types/force_reply"
 
 module Tele
   module Requests
