@@ -1,13 +1,10 @@
 require "http/client"
 require "uri"
-require "./api_methods"
 
 module Tele
   # A basic HTTP(S) Client for Telegam API
   # TODO: Client reusage (pool?)
   class Client
-    include APIMethods
-
     BASE_URI = URI.parse("https://api.telegram.org")
 
     @client : HTTP::Client
