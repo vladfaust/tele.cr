@@ -1,5 +1,4 @@
 require "../src/tele"
-require "./handlers/update_id_handler"
 require "./actions/**"
 require "./responders/**"
 require "option_parser"
