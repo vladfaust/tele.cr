@@ -52,6 +52,13 @@ class ExampleBot < Tele::Bot
       else
         return Responders::DontUnderstand
       end
+    elsif callback_query = update.callback_query
+      case update.callback_query.not_nil!.data
+      when /^like:\d+/
+        return Actions::Inline::Like
+      when /^dislike:\d+/
+        return Actions::Inline::Dislike
+      end
     end
     return nil
   end

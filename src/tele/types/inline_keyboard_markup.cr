@@ -1,16 +1,19 @@
 require "json"
 require "../type"
+require "./macros"
 require "./inline_keyboard_button"
 
 module Tele
   module Types
     class InlineKeyboardMarkup < Type
-      JSON.mapping({
-        inline_keyboard: Array(Array(InlineKeyboardButton)),
-      })
+      include Macros
 
-      def initialize(@inline_keyboard)
-      end
+      MAPPING = {
+        inline_keyboard: {type: Array(Array(InlineKeyboardButton))},
+      }
+
+      define_initializer({{MAPPING}})
+      JSON.mapping({{MAPPING}})
     end
   end
 end
