@@ -10,10 +10,10 @@ require "./requests/**"
 
 module Tele
   abstract class Bot
-    @@color : Symbol = :cyan
-    @@name : String = "Tele::Bot"
+    @@color : Symbol = :cyan      # Used in logs
+    @@name : String = "Tele::Bot" # Used to colorize logs 🌈
 
-    # Initializes a new instance of the bot and binds it to *port*.
+    # Initialize a new instance of the bot and bind it to *port*.
     # To start listening to updates, use `#listen`.
     def initialize(@token : String, @port : Int32, @logger : Logger)
       @server = HTTP::Server.new(port, handlers) do |context|
@@ -35,6 +35,7 @@ module Tele
           context.response.content_type = "application/json"
           context.response.print(response.to_json)
         else
+          # If there is no response, just answer with 200
           context.response.close
         end
       end
@@ -53,6 +54,7 @@ module Tele
 
     protected getter token, port, logger
 
+    # Prepended to most of bot's logs ("INFO -- : LogHeader @ text")
     protected def log_header
       @@name.colorize(@@color).mode(:bold).to_s + " @ "
     end

@@ -21,6 +21,7 @@ class ExampleBot < Tele::Bot
   end
 
   def map(update)
+    # See `Tele::Types::Update` and check against any update type
     if message = update.message
       text = update.message.not_nil!.text
       if text
