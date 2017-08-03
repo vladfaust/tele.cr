@@ -58,7 +58,7 @@ module Tele
     end
 
     private def handlers
-      [UpdatesLogger.new(logger, log_header)]
+      [ElapsedTimeLogger.new(logger, log_header), UpdatesLogger.new(logger, log_header)]
     end
 
     private abstract def map(update : Tele::Types::Update) : Tele::Action.class | Tele::Responder.class | ::Nil
