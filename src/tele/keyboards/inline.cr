@@ -1,22 +1,23 @@
+require "../types/inline_keyboard_button"
+require "../types/inline_keyboard_markup"
+
 module Tele
   module Keyboards
     abstract class Inline
       class Button
-        property text : String, url : String?, callback_data : String?, switch_inline_query : String?
-
-        def initialize(@text, @url, @callback_data, @switch_inline_query)
+        def initialize(@text : String, @url : String? = nil, @callback_data : String? = nil, @switch_inline_query : String? = nil)
         end
 
         def to_type
-          Types::InlineKeyboardButton.new(b.text, b.url, b.callback_data, b.switch_inline_query)
+          Types::InlineKeyboardButton.new(@text, @url, @callback_data, @switch_inline_query)
         end
       end
 
-      @buttons = Array(Array(Button)).new
+      @buttons = Array(Button | Array(Button)).new
 
-      def to_json
+      def to_type
         buttons = @buttons.map { |b| b.is_a?(Button) ? b.to_type : b.map &.to_type }
-        Types::InlineKeyboardMarkup.new(buttons).to_json
+        Types::InlineKeyboardMarkup.new(buttons)
       end
     end
   end
