@@ -1,19 +1,22 @@
 require "json"
 require "../type"
+require "./macros"
 require "./keyboard_button"
 
 module Tele
   module Types
     class ReplyKeyboardMarkup < Type
-      JSON.mapping({
-        keyboard:          Array(Array(KeyboardButton)),
+      include Macros
+
+      MAPPING = {
+        keyboard:          {type: Array(Array(KeyboardButton) | KeyboardButton)},
         resize_keyboard:   {type: Bool?},
         one_time_keyboard: {type: Bool?},
         selective:         {type: Bool?},
-      })
+      }
 
-      def initialize(@keyboard, @resize_keyboard, @one_time_keyboard, @selective)
-      end
+      define_initializer({{MAPPING}})
+      JSON.mapping({{MAPPING}})
     end
   end
 end

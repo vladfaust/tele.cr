@@ -1,4 +1,5 @@
 require "../../src/tele/requests/send_message"
+require "../keyboards/main_menu"
 
 module Responders
   class Start < Tele::Responder
@@ -13,7 +14,9 @@ module Responders
       # TODO: Add reply markup
       R::SendMessage.new(
         chat_id: update.message.not_nil!.chat.id,
-        text: "Hello, #{first_name}, my name is #{@name}!",
+        text: "Hello, <i>#{first_name}</i>, my name is <b>#{@name}</b>!",
+        parse_mode: "HTML",
+        reply_markup: Keyboards::MainMenu.new.to_type
       )
     end
   end
