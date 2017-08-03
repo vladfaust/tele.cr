@@ -3,8 +3,8 @@ require "uri"
 require "./api_methods"
 
 module Tele
-  # A basic HTTP Client for Telegam API
-  # FIXME: Client reusage (pool?)
+  # A basic HTTP(S) Client for Telegam API
+  # TODO: Client reusage (pool?)
   class Client
     include APIMethods
 

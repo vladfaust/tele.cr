@@ -3,6 +3,14 @@ require "http/server/handler"
 require "../types/message"
 
 module Tele
+  # Logs an incoming update. Is smart enough to determine the type and sender 😏
+  #
+  # ```
+  # ExampleBot @ incoming text message from user @vladfaust (id 42): "/start"
+  # ExampleBot @ incoming callback query with data "like:92" from @vladfaust (id 42)
+  # ```
+  #
+  # OPTIMIZE: Avoid creating instances of Update (it will be duplicated when the server handles it)
   class UpdatesLogger
     include HTTP::Handler
 

@@ -2,6 +2,11 @@ require "logger"
 require "http/server/handler"
 
 module Tele
+  # Wraps a request so it can calculate the time needed for it to complete
+  #
+  # ```
+  # INFO -- : ExampleBot @ handled in 1.37ms
+  # ```
   class ElapsedTimeLogger
     include HTTP::Handler
 
