@@ -1,3 +1,5 @@
+require "./types/update"
+
 module Tele
   # Usage (for `MyResponder` implementation see `Tele::Responder`):
   #

@@ -1,4 +1,5 @@
 require "../request"
+require "../types/webhook_info"
 
 module Tele
   module Requests

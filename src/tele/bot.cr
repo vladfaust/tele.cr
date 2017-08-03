@@ -1,12 +1,13 @@
 require "logger"
 require "colorize"
 require "uri"
+require "http/server"
 require "./client"
 require "./action"
 require "./responder"
 require "./handlers/*"
-require "./types/**"
-require "./requests/**"
+require "./types/update"
+require "./requests/set_webhook"
 
 module Tele
   abstract class Bot

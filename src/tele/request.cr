@@ -1,4 +1,4 @@
-require "./type"
+require "./client"
 
 module Tele
   abstract class Request(CastResponseTo)
