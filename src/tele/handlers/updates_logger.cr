@@ -16,6 +16,7 @@ module Tele
     MAX_TEXT_SIZE = 50
 
     def call(context)
+      # Damn IO. Refer to https://stackoverflow.com/questions/45414568/read-request-body-without-deleting-it to find out how to get the request's body without deleting it
       if body = context.request.body
         tmp_body = IO::Memory.new
         bytes_read = IO.copy(body, tmp_body, limit: 1024 ** 2)
@@ -24,6 +25,7 @@ module Tele
         unless bytes_read == 1024 ** 2
           update = Tele::Types::Update.from_json(tmp_body.gets_to_end.to_s)
 
+          # TODO: Use macros to DRY
           if update.message
             message = update.message.not_nil!
             content = message_content(message)
