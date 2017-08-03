@@ -25,26 +25,25 @@ class ExampleBot < Tele::Bot
       if text
         case text
         when /^\/start/
-          return Actions::Start
+          Actions::Start
         when "/inline", Keyboards::MainMenu::INLINE
-          return Responders::Inline
+          Responders::Inline
         when Keyboards::MainMenu::BANANA
-          return Responders::Banana
+          Responders::Banana
         else
-          return Responders::DontUnderstand
+          Responders::DontUnderstand
         end
       else
-        return Responders::DontUnderstand
+        Responders::DontUnderstand
       end
     elsif callback_query = update.callback_query
       case update.callback_query.not_nil!.data
       when /^like:\d+/
-        return Actions::Inline::Like
+        Actions::Inline::Like
       when /^dislike:\d+/
-        return Actions::Inline::Dislike
+        Actions::Inline::Dislike
       end
     end
-    return nil
   end
 end
 
