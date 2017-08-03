@@ -44,8 +44,10 @@ class ExampleBot < Tele::Bot
         case text
         when /^\/start/
           return Actions::Start
-        when "/inline"
+        when "/inline", Keyboards::MainMenu::INLINE
           return Responders::Inline
+        when Keyboards::MainMenu::BANANA
+          return Responders::Banana
         else
           return Responders::DontUnderstand
         end

@@ -9,7 +9,7 @@ module Tele
       include Macros
 
       MAPPING = {
-        inline_keyboard: {type: Array(Array(InlineKeyboardButton))},
+        inline_keyboard: {type: Array(Array(InlineKeyboardButton) | InlineKeyboardButton)},
       }
 
       define_initializer({{MAPPING}})
