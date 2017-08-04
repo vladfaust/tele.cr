@@ -32,6 +32,8 @@ class ExampleBot < Tele::Bot
           Responders::Inline
         when Keyboards::MainMenu::BANANA
           Responders::Banana
+        when Keyboards::MainMenu::HIDE_MENU
+          Responders::HideMenu
         else
           Responders::DontUnderstand
         end
