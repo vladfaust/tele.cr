@@ -5,8 +5,6 @@ require "./macros"
 module Tele
   module Types
     class InlineKeyboardButton < Type
-      include Macros
-
       MAPPING = {
         text:                {type: String},
         url:                 {type: String?},

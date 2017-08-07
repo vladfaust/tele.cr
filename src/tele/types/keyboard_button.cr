@@ -5,8 +5,6 @@ require "./macros"
 module Tele
   module Types
     class KeyboardButton < Type
-      include Macros
-
       MAPPING = {
         text:             {type: String},
         request_contact:  {type: Bool?},
