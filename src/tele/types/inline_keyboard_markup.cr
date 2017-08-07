@@ -6,8 +6,6 @@ require "./inline_keyboard_button"
 module Tele
   module Types
     class InlineKeyboardMarkup < Type
-      include Macros
-
       MAPPING = {
         inline_keyboard: {type: Array(Array(InlineKeyboardButton) | InlineKeyboardButton)},
       }

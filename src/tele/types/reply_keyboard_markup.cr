@@ -6,8 +6,6 @@ require "./keyboard_button"
 module Tele
   module Types
     class ReplyKeyboardMarkup < Type
-      include Macros
-
       MAPPING = {
         keyboard:          {type: Array(Array(KeyboardButton) | KeyboardButton)},
         resize_keyboard:   {type: Bool?},
