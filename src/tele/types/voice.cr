@@ -1,7 +1,9 @@
+require "../type"
+
 module Tele
   module Types
-    class Voice
-      JSON.mapping({
+    class Voice < Type
+      mapping({
         file_id:   {type: String},
         duration:  {type: Int32},
         mime_type: {type: String?},

@@ -4,7 +4,7 @@ module Tele
   module Types
     module InlineQueryResults
       class Contact < InlineQueryResult
-        MAPPING = {
+        mapping({
           id:                    {type: String},
           phone_number:          {type: String},
           first_name:            {type: String},
@@ -16,10 +16,7 @@ module Tele
           thumb_width:           {type: Int32?},
           thumb_height:          {type: Int32?},
           type:                  {type: String, default: "contact"},
-        }
-
-        JSON.mapping({{MAPPING}})
-        define_initializer({{MAPPING}})
+        })
       end
     end
   end

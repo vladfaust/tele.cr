@@ -1,9 +1,10 @@
+require "../type"
 require "./user"
 
 module Tele
   module Types
-    class GameHighScore
-      JSON.mapping({
+    class GameHighScore < Type
+      mapping({
         position: {type: Int32},
         user:     {type: User},
         score:    {type: Int32},

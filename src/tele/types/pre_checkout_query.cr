@@ -1,10 +1,11 @@
+require "../type"
 require "./user"
 require "./order_info"
 
 module Tele
   module Types
-    class PreCheckoutQuery
-      JSON.mapping({
+    class PreCheckoutQuery < Type
+      mapping({
         id:                 {type: String},
         from:               {type: User},
         currency:           {type: String},

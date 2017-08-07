@@ -1,9 +1,10 @@
+require "../type"
 require "./photo_size"
 
 module Tele
   module Types
-    class Sticker
-      JSON.mapping({
+    class Sticker < Type
+      mapping({
         file_id:   {type: String},
         width:     {type: Int32},
         height:    {type: Int32},

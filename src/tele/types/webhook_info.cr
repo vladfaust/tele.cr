@@ -3,7 +3,7 @@ require "../type"
 module Tele
   module Types
     class WebhookInfo < Type
-      JSON.mapping({
+      mapping({
         url:                    {type: String},
         has_custom_certificate: {type: Bool},
         pending_update_count:   {type: Int32},

@@ -1,7 +1,9 @@
+require "../type"
+
 module Tele
   module Types
-    class PhotoSize
-      JSON.mapping({
+    class PhotoSize < Type
+      mapping({
         file_id:   {type: String},
         width:     {type: Int32},
         height:    {type: Int32},

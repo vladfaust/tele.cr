@@ -1,15 +1,16 @@
+require "../type"
 require "./user"
 require "./location"
 
 module Tele
   module Types
-    class InlineQuery
-      JSON.mapping({
+    class InlineQuery < Type
+      mapping({
         id:       {type: String},
         from:     {type: User},
-        location: {type: Location?},
         query:    {type: String},
         offset:   {type: String},
+        location: {type: Location?},
       })
     end
   end

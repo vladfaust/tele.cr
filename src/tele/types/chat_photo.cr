@@ -1,7 +1,9 @@
+require "../type"
+
 module Tele
   module Types
-    class ChatPhoto
-      JSON.mapping({
+    class ChatPhoto < Type
+      mapping({
         small_file_id: {type: String},
         big_file_id:   {type: String},
       })

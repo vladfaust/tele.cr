@@ -1,7 +1,9 @@
+require "../type"
+
 module Tele
   module Types
-    class Location
-      JSON.mapping({
+    class Location < Type
+      mapping({
         longitude: {type: Float64},
         latitude:  {type: Float64},
       })

@@ -4,7 +4,7 @@ module Tele
   module Types
     module InlineQueryResults
       class Location < InlineQueryResult
-        MAPPING = {
+        mapping({
           id:                    {type: String},
           latitude:              {type: Float64},
           longitude:             {type: Float64},
@@ -15,10 +15,7 @@ module Tele
           thumb_width:           {type: Int32?},
           thumb_height:          {type: Int32?},
           type:                  {type: String, default: "location"},
-        }
-
-        JSON.mapping({{MAPPING}})
-        define_initializer({{MAPPING}})
+        })
       end
     end
   end

@@ -1,7 +1,9 @@
+require "../type"
+
 module Tele
   module Types
-    class ForceReply
-      JSON.mapping({
+    class ForceReply < Type
+      mapping({
         force_reply: {type: Bool, mustbe: true},
         selective:   {type: Bool?},
       })

@@ -1,11 +1,12 @@
+require "../type"
 require "./photo_size"
 require "./message_entity"
 require "./animation"
 
 module Tele
   module Types
-    class Game
-      JSON.mapping({
+    class Game < Type
+      mapping({
         title:         {type: String},
         description:   {type: String},
         photo:         {type: Array(PhotoSize)},

@@ -1,9 +1,10 @@
+require "../type"
 require "./photo_size"
 
 module Tele
   module Types
-    class VideoNote
-      JSON.mapping({
+    class VideoNote < Type
+      mapping({
         file_id:   {type: String},
         length:    {type: Int32},
         duration:  {type: Int32},

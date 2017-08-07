@@ -4,7 +4,7 @@ module Tele
   module Types
     module InlineQueryResults
       class CachedVideo < InlineQueryResult
-        MAPPING = {
+        mapping({
           id:                    {type: String},
           video_file_id:         {type: String},
           title:                 {type: String},
@@ -13,10 +13,7 @@ module Tele
           reply_markup:          {type: InlineKeyboardMarkup?},
           input_message_content: {type: InputMessageContent?},
           type:                  {type: String, default: "video"},
-        }
-
-        JSON.mapping({{MAPPING}})
-        define_initializer({{MAPPING}})
+        })
       end
     end
   end

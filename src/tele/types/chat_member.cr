@@ -1,7 +1,9 @@
+require "../type"
+
 module Tele
   module Types
-    class ChatMember
-      JSON.mapping({
+    class ChatMember < Type
+      mapping({
         user:                      {type: User},
         status:                    {type: String},
         until_date:                {type: Int32?},

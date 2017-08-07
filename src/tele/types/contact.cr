@@ -1,7 +1,9 @@
+require "../type"
+
 module Tele
   module Types
-    class Contact
-      JSON.mapping({
+    class Contact < Type
+      mapping({
         phone_number: {type: String},
         first_name:   {type: String},
         last_name:    {type: String?},

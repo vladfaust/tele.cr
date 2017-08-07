@@ -4,7 +4,7 @@ module Tele
   module Types
     module InlineQueryResults
       class Gif < InlineQueryResult
-        MAPPING = {
+        mapping({
           id:                    {type: String},
           gif_url:               {type: String},
           gif_width:             {type: Int32?},
@@ -16,10 +16,7 @@ module Tele
           reply_markup:          {type: InlineKeyboardMarkup?},
           input_message_content: {type: InputMessageContent?},
           type:                  {type: String, default: "gif"},
-        }
-
-        JSON.mapping({{MAPPING}})
-        define_initializer({{MAPPING}})
+        })
       end
     end
   end

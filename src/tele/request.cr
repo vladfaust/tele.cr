@@ -8,6 +8,17 @@ module Tele
       Client.new(token).make_request(@@method, (self unless @@empty_body), cast_to: CastResponseTo)
     end
 
+    macro define_hash_mapping(mapping)
+      def to_h
+        h = Hash(String, String?).new
+        {% for key, value in mapping %}
+          h["{{key}}"] = @{{key.id}}.try &.to_s{{ " || #{value[:default]}.to_s".id if value[:default] }}
+        {% end %}
+        h["method"] = @@method
+        h
+      end
+    end
+
     macro map(mapping)
       JSON.mapping(
         {% for key, value in mapping %}
@@ -26,6 +37,8 @@ module Tele
           @method = @@method
       )
       end
+
+      define_hash_mapping({{mapping}})
     end
 
     macro inherited

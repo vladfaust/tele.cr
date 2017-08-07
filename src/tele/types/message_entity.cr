@@ -1,9 +1,10 @@
+require "../type"
 require "./user"
 
 module Tele
   module Types
-    class MessageEntity
-      JSON.mapping({
+    class MessageEntity < Type
+      mapping({
         type:   {type: String},
         offset: {type: Int32},
         length: {type: Int32},
