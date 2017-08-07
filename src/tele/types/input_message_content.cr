@@ -1,6 +1,8 @@
+require "../type"
+
 module Tele
   module Types
-    abstract class InputMessageContent
+    abstract class InputMessageContent < Type
     end
   end
 end
