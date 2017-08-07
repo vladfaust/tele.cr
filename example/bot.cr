@@ -47,6 +47,8 @@ class ExampleBot < Tele::Bot
       when /^dislike:\d+/
         Actions::Inline::Dislike
       end
+    elsif inline_query = update.inline_query
+      Actions::InlineQuery
     end
   end
 end
