@@ -1,7 +1,9 @@
+require "../type"
+
 module Tele
   module Types
-    class ShippingAddress
-      JSON.mapping({
+    class ShippingAddress < Type
+      mapping({
         country_code: {type: String},
         state:        {type: String},
         city:         {type: String},

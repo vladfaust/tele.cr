@@ -9,7 +9,7 @@ require "./pre_checkout_query"
 module Tele
   module Types
     class Update < Type
-      JSON.mapping({
+      mapping({
         update_id:            {type: Int32},
         message:              {type: Message?},
         edited_message:       {type: Message?},

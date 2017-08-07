@@ -1,7 +1,9 @@
+require "../type"
+
 module Tele
   module Types
-    class User
-      JSON.mapping({
+    class User < Type
+      mapping({
         id:            {type: Int32},
         first_name:    {type: String},
         last_name:     {type: String?},

@@ -4,7 +4,7 @@ module Tele
   module Types
     module InlineQueryResults
       class Venue < InlineQueryResult
-        MAPPING = {
+        mapping({
           id:                    {type: String},
           latitude:              {type: Float64},
           longitude:             {type: Float64},
@@ -17,10 +17,7 @@ module Tele
           thumb_width:           {type: Int32?},
           thumb_height:          {type: Int32?},
           type:                  {type: String, default: "venue"},
-        }
-
-        JSON.mapping({{MAPPING}})
-        define_initializer({{MAPPING}})
+        })
       end
     end
   end

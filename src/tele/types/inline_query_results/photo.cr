@@ -4,7 +4,7 @@ module Tele
   module Types
     module InlineQueryResults
       class Photo < InlineQueryResult
-        MAPPING = {
+        mapping({
           id:                    {type: String},
           photo_url:             {type: String},
           thumb_url:             {type: String},
@@ -16,10 +16,7 @@ module Tele
           reply_markup:          {type: InlineKeyboardMarkup?},
           input_message_content: {type: InputMessageContent?},
           type:                  {type: String, default: "photo"},
-        }
-
-        JSON.mapping({{MAPPING}})
-        define_initializer({{MAPPING}})
+        })
       end
     end
   end

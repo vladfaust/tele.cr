@@ -1,7 +1,9 @@
+require "../type"
+
 module Tele
   module Types
-    class LabeledPrice
-      JSON.mapping({
+    class LabeledPrice < Type
+      mapping({
         label:  {type: String},
         amount: {type: Int32},
       })

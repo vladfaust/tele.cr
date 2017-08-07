@@ -1,7 +1,9 @@
+require "../type"
+
 module Tele
   module Types
-    class Invoice
-      JSON.mapping({
+    class Invoice < Type
+      mapping({
         title:           {type: String},
         description:     {type: String},
         start_parameter: {type: String},

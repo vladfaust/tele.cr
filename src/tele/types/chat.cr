@@ -1,9 +1,10 @@
+require "../type"
 require "./chat_photo"
 
 module Tele
   module Types
-    class Chat
-      JSON.mapping({
+    class Chat < Type
+      mapping({
         id:                             {type: Int32},
         type:                           {type: String},
         title:                          {type: String?},

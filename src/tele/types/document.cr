@@ -1,9 +1,10 @@
+require "../type"
 require "./photo_size"
 
 module Tele
   module Types
-    class Document
-      JSON.mapping({
+    class Document < Type
+      mapping({
         file_id:   {type: String},
         thumb:     {type: PhotoSize?},
         file_name: {type: String?},

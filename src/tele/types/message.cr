@@ -1,3 +1,4 @@
+require "../type"
 require "./user"
 require "./chat"
 require "./message_entity"
@@ -16,12 +17,12 @@ require "./successful_payment"
 
 module Tele
   module Types
-    class Message
-      JSON.mapping({
+    class Message < Type
+      mapping({
         message_id:              {type: Int32},
-        from:                    {type: User?},
         date:                    {type: Int32},
         chat:                    {type: Chat},
+        from:                    {type: User?},
         forward_from:            {type: User?},
         forward_from_chat:       {type: Chat?},
         forward_from_message_id: {type: Int32?},
