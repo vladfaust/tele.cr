@@ -73,8 +73,7 @@ So there are no any test for Tele yet. If you feel uncomfortable with it, write 
 ## Roadmap
 
 - [x] Inline queries
-- [ ] Sending files
-- [ ] Downloading files
+- [x] Sending files
 - [ ] HTTP Client pooling
 - [ ] Asynchronous requests
 - [ ] Broadcasting
