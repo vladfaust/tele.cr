@@ -1,6 +1,8 @@
 require "../src/tele"
+require "../src/tele/requests/*"
 require "./actions/**"
 require "./responders/**"
+require "../src/tele/types/animation"
 require "option_parser"
 
 class ExampleBot < Tele::Bot
@@ -28,6 +30,10 @@ class ExampleBot < Tele::Bot
         case text
         when /^\/start/
           Actions::Start
+        when "/voice_url"
+          Responders::VoiceURL
+        when "/voice_file"
+          Responders::VoiceFile
         when "/inline", Keyboards::MainMenu::INLINE
           Responders::Inline
         when Keyboards::MainMenu::BANANA

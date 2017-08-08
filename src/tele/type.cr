@@ -14,9 +14,9 @@ module Tele
 
     macro define_hash_mapping(mapping)
       def to_h
-        h = Hash(String, String?).new
+        h = Hash(String, Union({{mapping.values.map { |v| "#{v[:type]}" }.join(" | ").id}})).new
         {% for key, value in mapping %}
-          h[key] = @{{key.id}}.try &.to_s{{ " || #{value[:default]}.to_s".id if value[:default] }}
+          h["{{key}}"] = @{{key.id}}.is_a?(Tele::Type) ? @{{key.id}}.to_json : @{{key.id}}.try &.to_s || {{value[:default].id}}.to_s
         {% end %}
         h
       end

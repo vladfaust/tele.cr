@@ -33,8 +33,9 @@ module Tele
         end
 
         if response
-          context.response.content_type = "application/json"
-          context.response.print(response.to_json)
+          response_data = Tele::Client.new(token).build_request(response.to_h)
+          context.response.headers.merge!(response_data[:headers])
+          context.response.print(response_data[:body])
         else
           # If there is no response, just answer with 200
           context.response.close
