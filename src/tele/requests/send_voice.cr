@@ -17,10 +17,6 @@ module Tele
         reply_to_message_id:  {type: Int32?},
         reply_markup:         {type: Types::InlineKeyboardMarkup | Types::ReplyKeyboardMarkup | Types::ReplyKeyboardRemove | Types::ForceReply, nilable: true},
       })
-
-      def file
-        @voice if @voice.is_a?(File)
-      end
     end
   end
 end
