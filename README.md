@@ -32,12 +32,12 @@ end
 
 class StartAction < Tele::Action
   def perform
-    Responders::Start.new(update).respond
+    StartResponder.new(update).respond
   end
 end
 
 class ExampleBot < Tele::Bot
-  @@name = "MyBot"
+  @@name = "ExampleBot"
 
   def map(update)
     if message = update.message
@@ -45,7 +45,7 @@ class ExampleBot < Tele::Bot
       if text
         case text
         when /^\/start/
-          Actions::Start
+          StartAction
         end
       end
     end
