@@ -1,10 +1,7 @@
 require "./client"
-require "./input_file"
 
 module Tele
   abstract class Request(CastResponseTo)
-    @@empty_body = true
-
     def send(token : String)
       Client.new(token).request(@@method, self.to_h, cast_to: CastResponseTo)
     end
@@ -20,17 +17,7 @@ module Tele
       end
     end
 
-    macro map(mapping)
-      JSON.mapping(
-        {% for key, value in mapping %}
-          {{key.id}}: {{value.id}},
-        {% end %}
-          method: {type: String},
-      )
-
-      @@empty_body = false
-      {% possible_file_variables = [] of Object %}
-
+    macro define_initializer(mapping)
       def initialize(
         {% for key, value in mapping %}
           {% default = value[:default] ? value[:default] : (value[:nilable] || "#{value[:type]}".includes?('?') || "#{value[:type]}".includes?("Nil") ? nil : false) %}
@@ -40,19 +27,22 @@ module Tele
           @method = @@method
       )
       end
+    end
 
-      def is_multipart?
-        {% possible_file_variables.map { |v| "@#{v}.is_a?(InputFile)" }.join(" || ").id %}
-      end
+    macro map(mapping)
+      JSON.mapping(
+        {% for key, value in mapping %}
+          {{key.id}}: {{value.id}},
+        {% end %}
+          method: {type: String},
+      )
 
+      define_initializer({{mapping}})
       define_hash_mapping({{mapping}})
     end
 
     macro inherited
       @@method : String = {{@type.name}}.to_s.split(":").last.sub &.downcase
-    end
-
-    def file
     end
   end
 end
