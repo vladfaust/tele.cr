@@ -59,6 +59,7 @@ So there are no any test for Tele yet. If you feel uncomfortable with it, write 
 
 - [x] Inline queries
 - [x] Sending files
+- [ ] Multiple requests in one handler
 - [ ] HTTP Client pooling
 - [ ] Asynchronous requests
 - [ ] Broadcasting
