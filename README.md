@@ -54,7 +54,7 @@ See `example/` for a full-featured example implementation.
 
 I love Crystal because if it compiles it means the program will definitely work. This reduces the amount of tests to be written. I personally write tests for SQL queries only. 😄
 
-So there are no any test for Tele yet. If you feel uncomfortable with it, write some and create a PR.
+So there are no any tests for Tele at the moment.
 
 ## Roadmap
 
@@ -73,9 +73,11 @@ So there are no any test for Tele yet. If you feel uncomfortable with it, write 
 1. Create an issue
 2. Fork it https://github.com/vladfaust/tele/fork
 3. Make it `git checkout -b issue-42`
-4. Do it `git commit -am "feat: my feature\n\nFixes #42"` (see [Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153]))
+4. Do it `git commit -am "feat: my feature\n\nFixes #42"` (see [Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)*)
 5. Makes us `git push origin issue-42`
 6. Better create a new Pull Request
+
+\* Please use these types: `feat` for new features, `fix` for bugfixes, `ref` for code refactoring, `doc` for documentation improvements, `typo` for fixing typos. Refer to [this commit](https://github.com/vladfaust/tele.cr/commit/5eecab0b9e71282c403c6753ac3064581afd9009) for a good example.
 
 ## Contributors
 
