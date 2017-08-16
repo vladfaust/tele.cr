@@ -41,6 +41,7 @@ bot = ExampleBot.new("BOT_API_TOKEN", 5000, Logger.new(STDOUT))
 bot.set_webhook(URI.new(scheme: "https", host: "example.com"))
 bot.listen
 
+# => ExampleBot @ using Tele v0.1.2 by @vladfaust
 # => ExampleBot @ webhook set to https://example.com
 # => ExampleBot @ listening on port 5000
 # => ExampleBot @ incoming text message from user @vladfaust (id 42): "/start"
