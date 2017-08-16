@@ -18,34 +18,27 @@ dependencies:
 ```crystal
 require "tele"
 
-class StartResponder < Tele::Responder
-  def respond
-    first_name = update.message.not_nil!.chat.first_name
+class Start < Tele::Handlers::Message
+  def call
+    first_name = message.from.not_nil!.first_name
 
-    R::SendMessage.new(
-      chat_id: update.message.not_nil!.chat.id,
+    send_message(
       text: "Hello, <b>#{first_name}</b>!",
       parse_mode: "HTML",
     )
   end
 end
 
-class StartAction < Tele::Action
-  def perform
-    StartResponder.new(update).respond
-  end
-end
-
 class ExampleBot < Tele::Bot
   @@name = "ExampleBot"
 
-  def map(update)
+  def handle(update)
     if message = update.message
       text = update.message.not_nil!.text
       if text
         case text
         when /^\/start/
-          StartAction
+          Start
         end
       end
     end

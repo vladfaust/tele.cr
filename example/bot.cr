@@ -1,8 +1,5 @@
 require "../src/tele"
-require "../src/tele/requests/*"
-require "./actions/**"
-require "./responders/**"
-require "../src/tele/types/animation"
+require "./handlers/**"
 require "option_parser"
 
 class ExampleBot < Tele::Bot
@@ -22,39 +19,41 @@ class ExampleBot < Tele::Bot
     ]
   end
 
-  def map(update)
+  def handle(update)
     # See `Tele::Types::Update` and check against any update type
     if message = update.message
       text = update.message.not_nil!.text
       if text
         case text
         when /^\/start/
-          Actions::Start
+          Handlers::Start
         when "/voice_url"
-          Responders::VoiceURL
+          Handlers::VoiceURL
         when "/voice_file"
-          Responders::VoiceFile
+          Handlers::VoiceFile
         when "/inline", Keyboards::MainMenu::INLINE
-          Responders::Inline
+          Handlers::Inline
         when Keyboards::MainMenu::BANANA
-          Responders::Banana
+          Handlers::Banana
         when Keyboards::MainMenu::HIDE_MENU
-          Responders::HideMenu
+          Handlers::HideMenu
+        when /^\/ignore/
+          ->(update : Tele::Types::Update) { 2 * 2; nil }
         else
-          Responders::DontUnderstand
+          Handlers::DontUnderstand
         end
       else
-        Responders::DontUnderstand
+        Handlers::DontUnderstand
       end
     elsif callback_query = update.callback_query
       case update.callback_query.not_nil!.data
       when /^like:\d+/
-        Actions::Inline::Like
+        Handlers::CallbackQuery::Like
       when /^dislike:\d+/
-        Actions::Inline::Dislike
+        Handlers::CallbackQuery::Dislike
       end
     elsif inline_query = update.inline_query
-      Actions::InlineQuery
+      Handlers::InlineQuery
     end
   end
 end
