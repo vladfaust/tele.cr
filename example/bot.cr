@@ -10,7 +10,7 @@ class ExampleBot < Tele::Bot
   @@color = :light_yellow # Used to colorize logs 🌈
 
   # These handlers are default. Override this method only when need to change them, otherwise don't
-  def handlers
+  def middleware
     [
       # This one colorfuly logs time elapsed for handling the whole request
       # E.g. `$ ExampleBot @ handled in 352.0µs`
