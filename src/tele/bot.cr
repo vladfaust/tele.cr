@@ -7,6 +7,7 @@ require "./handlers/*"
 require "./middleware/*"
 require "./types/update"
 require "./requests/set_webhook"
+require "./version"
 
 module Tele
   abstract class Bot
@@ -31,6 +32,7 @@ module Tele
           context.response.close
         end
       end
+      logger.info(log_header + "using Tele v#{VERSION} by @vladfaust")
     end
 
     def set_webhook(uri : URI, max_connections = 40, allowed_updates = nil)
