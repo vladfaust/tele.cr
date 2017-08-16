@@ -20,10 +20,8 @@ require "tele"
 
 class Start < Tele::Handlers::Message
   def call
-    first_name = message.from.not_nil!.first_name
-
     send_message(
-      text: "Hello, <b>#{first_name}</b>!",
+      text: "Hello, <b>#{message.from.not_nil!.first_name}</b>!",
       parse_mode: "HTML",
     )
   end
@@ -34,18 +32,12 @@ class ExampleBot < Tele::Bot
 
   def handle(update)
     if message = update.message
-      text = update.message.not_nil!.text
-      if text
-        case text
-        when /^\/start/
-          Start
-        end
-      end
+      Start
     end
   end
 end
 
-bot = ExampleBot.new("BOT_TOKEN", 5000, Logger.new(STDOUT))
+bot = ExampleBot.new("BOT_API_TOKEN", 5000, Logger.new(STDOUT))
 bot.set_webhook(URI.new(scheme: "https", host: "example.com"))
 bot.listen
 
