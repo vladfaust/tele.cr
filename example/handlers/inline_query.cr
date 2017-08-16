@@ -1,11 +1,11 @@
-require "../responders/inline_query"
 require "../../src/tele/types/inline_query_results/article"
 require "../../src/tele/types/input_text_message_content"
 
-module Actions
-  class InlineQuery < Tele::Action
-    def perform
+module Handlers
+  class InlineQuery < Tele::Handlers::InlineQuery
+    def call
       results = [] of Tele::Types::InlineQueryResult
+
       10.times do |i|
         results << Tele::Types::InlineQueryResults::Article.new(
           id: (i + 1).to_s,
@@ -13,7 +13,12 @@ module Actions
           input_message_content: Tele::Types::InputTextMessageContent.new(message_text: "Selected ##{i + 1}"),
         )
       end
-      Responders::InlineQuery.new(update, results).respond
+
+      answer_inline_query(
+        results: results,
+        cache_time: 0,
+        is_personal: true,
+      )
     end
   end
 end

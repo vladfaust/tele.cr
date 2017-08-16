@@ -3,8 +3,7 @@ require "colorize"
 require "uri"
 require "http/server"
 require "./client"
-require "./action"
-require "./responder"
+require "./handlers/*"
 require "./middleware/*"
 require "./types/update"
 require "./requests/set_webhook"
@@ -20,19 +19,10 @@ module Tele
       @server = HTTP::Server.new(port, middleware) do |context|
         update = Tele::Types::Update.from_json(context.request.body.not_nil!)
 
-        action = map(update)
-        next context.response.close if action == nil
+        handler = handle(update)
+        next context.response.close if handler == nil
 
-        response = nil
-        if action.is_a?(Tele::Action.class)
-          action = action.new(update)
-          response = action.perform
-        elsif action.is_a?(Tele::Responder.class)
-          responder = action
-          response = responder.new(update).respond
-        end
-
-        if response
+        if response = handler.not_nil!.call(update)
           response_data = Tele::Client.new(token).build_request(response.to_h)
           context.response.headers.merge!(response_data[:headers])
           context.response.print(response_data[:body])
@@ -65,6 +55,6 @@ module Tele
       [ElapsedTimeLogger.new(logger, log_header), UpdatesLogger.new(logger, log_header)]
     end
 
-    private abstract def map(update : Tele::Types::Update) : Tele::Action.class | Tele::Responder.class | ::Nil
+    private abstract def handle(update : Tele::Types::Update) : Tele::Handler.class | Proc | ::Nil
   end
 end
