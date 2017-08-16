@@ -5,7 +5,7 @@ require "http/server"
 require "./client"
 require "./action"
 require "./responder"
-require "./handlers/*"
+require "./middleware/*"
 require "./types/update"
 require "./requests/set_webhook"
 
@@ -17,7 +17,7 @@ module Tele
     # Initialize a new instance of the bot and bind it to *port*.
     # To start listening to updates, use `#listen`.
     def initialize(@token : String, @port : Int32, @logger : Logger)
-      @server = HTTP::Server.new(port, handlers) do |context|
+      @server = HTTP::Server.new(port, middleware) do |context|
         update = Tele::Types::Update.from_json(context.request.body.not_nil!)
 
         action = map(update)
@@ -61,7 +61,7 @@ module Tele
       @@name.colorize(@@color).mode(:bold).to_s + " @ "
     end
 
-    private def handlers
+    private def middleware
       [ElapsedTimeLogger.new(logger, log_header), UpdatesLogger.new(logger, log_header)]
     end
 
