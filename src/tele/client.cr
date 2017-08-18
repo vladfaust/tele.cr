@@ -1,4 +1,6 @@
 require "http/client"
+require "http/formdata"
+require "http/multipart"
 require "uri"
 require "json"
 require "mime"
