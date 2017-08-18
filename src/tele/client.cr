@@ -2,6 +2,7 @@ require "http/client"
 require "uri"
 require "json"
 require "mime"
+require "logger"
 
 module Tele
   # A basic HTTP(S) Client for Telegam API
@@ -11,7 +12,7 @@ module Tele
 
     @client : HTTP::Client
 
-    def initialize(@token : String)
+    def initialize(@token : String, @logger : Logger = Logger.new(STDOUT))
       @client = HTTP::Client.new(BASE_URI)
     end
 
@@ -56,13 +57,21 @@ module Tele
 
     # TODO: Handle Telegram error responses
     def request(method, payload = {} of String => String, cast_to : Type.class | Nil.class | Nil = nil)
-      response = @client.post("/bot" + @token + "/" + method, **build_request(payload))
+      id = rand(1000)
+      request = build_request(payload)
+
+      @logger.debug("Tele::Client @ post request ##{id} to /#{method} with payload #{request}")
+
+      response = @client.post("/bot" + @token + "/" + method, **request)
+
+      body = response.body.to_s
+      @logger.debug("Tele::Client @ response ##{id}: #{body.to_s}")
 
       if response.status_code == 200
         if cast_to && !cast_to.nilable?
-          cast_to.from_json(JSON.parse(response.body.not_nil!)["result"].to_json)
+          cast_to.from_json(JSON.parse(body)["result"].to_json)
         else
-          JSON.parse(response.body.not_nil!)
+          JSON.parse(body)
         end
       end
     end
