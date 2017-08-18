@@ -5,6 +5,7 @@ require "uri"
 require "json"
 require "mime"
 require "logger"
+require "./types/file"
 
 module Tele
   # A basic HTTP(S) Client for Telegam API
@@ -75,6 +76,32 @@ module Tele
         else
           JSON.parse(body)
         end
+      end
+    end
+
+    def download_file(*, file_path : String) : IO
+      id = rand(1000)
+      @logger.debug("Tele::Client @ downloading file ##{id} with path #{file_path}")
+
+      io = IO::Memory.new
+
+      @client.get("/file/bot" + @token + "/" + file_path) do |response|
+        IO.copy(response.body_io, io)
+      end
+
+      @logger.debug("Tele::Client @ downloaded file ##{id}, size: #{io.size} bytes")
+
+      io
+    end
+
+    def download_file(file : Types::File)
+      download_file(file_path: file.file_path)
+    end
+
+    def download_file(*, file_id : String)
+      response = request("getFile", payload: {"file_id" => file_id}, cast_to: Types::File)
+      if response && (file_path = response.as(Types::File).file_path)
+        download_file(file_path: file_path)
       end
     end
   end
