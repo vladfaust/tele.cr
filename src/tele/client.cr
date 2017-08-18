@@ -59,7 +59,7 @@ module Tele
       response = @client.post("/bot" + @token + "/" + method, **build_request(payload))
 
       if response.status_code == 200
-        if cast_to && cast_to.class != Nil.class
+        if cast_to && !cast_to.nilable?
           cast_to.from_json(JSON.parse(response.body.not_nil!)["result"].to_json)
         else
           JSON.parse(response.body.not_nil!)
