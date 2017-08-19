@@ -25,10 +25,13 @@ module Tele
 
         if response = handler.not_nil!.call(update)
           response_data = Tele::Client.new(token).build_request(response.to_h)
+          @logger.debug(log_header + "responding with #{response_data}")
+
           context.response.headers.merge!(response_data[:headers])
           context.response.print(response_data[:body])
         else
           # If there is no response, just answer with 200
+          @logger.debug(log_header + "empty response")
           context.response.close
         end
       end
