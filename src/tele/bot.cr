@@ -16,8 +16,8 @@ module Tele
 
     # Initialize a new instance of the bot and bind it to *port*.
     # To start listening to updates, use `#listen`.
-    def initialize(@token : String, @port : Int32, @logger : Logger)
-      @server = HTTP::Server.new(port, middleware) do |context|
+    def initialize(@token : String, @port : Int32, @logger : Logger, @host : String = "127.0.0.1")
+      @server = HTTP::Server.new(@host, port, middleware) do |context|
         update = Tele::Types::Update.from_json(context.request.body.not_nil!)
 
         handler = handle(update)
@@ -44,7 +44,7 @@ module Tele
     end
 
     def listen
-      logger.info(log_header + "listening on port " + port.to_s.colorize.mode(:bold).to_s)
+      logger.info(log_header + "listening on " + "#{@host}:#{port}".colorize.mode(:bold).to_s)
 
       @server.listen
     end
