@@ -11,8 +11,8 @@ require "./version"
 
 module Tele
   abstract class Bot
-    @@color : Symbol = :cyan      # Used in logs
-    @@name : String = "Tele::Bot" # Used to colorize logs 🌈
+    @@name : String = "Tele::Bot" # Used in logs
+    @@color : Symbol = :cyan      # Used to colorize logs 🌈
 
     # Initialize a new instance of the bot and bind it to *port*.
     # To start listening to updates, use `#listen`.
