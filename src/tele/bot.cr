@@ -57,7 +57,7 @@ module Tele
     end
 
     private def middleware
-      [ElapsedTimeLogger.new(logger, log_header), UpdatesLogger.new(logger, log_header)]
+      [ElapsedTimeLogger.new(logger, log_header), UpdatesLogger.new(logger, log_header, @@color)]
     end
 
     private abstract def handle(update : Tele::Types::Update) : Tele::Handler.class | Proc | ::Nil
