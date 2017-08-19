@@ -17,14 +17,14 @@ module Tele
     # Initialize a new instance of the bot and bind it to *port*.
     # To start listening to updates, use `#listen`.
     def initialize(@token : String, @port : Int32, @logger : Logger, @host : String = "127.0.0.1")
-      @server = HTTP::Server.new(@host, port, middleware) do |context|
+      @server = HTTP::Server.new(@host, @port, middleware) do |context|
         update = Tele::Types::Update.from_json(context.request.body.not_nil!)
 
         handler = handle(update)
         next context.response.close if handler == nil
 
         if response = handler.not_nil!.call(update)
-          response_data = Tele::Client.new(token).build_request(response.to_h)
+          response_data = Tele::Client.new(@token).build_request(response.to_h)
           @logger.debug(log_header + "responding with #{response_data}")
 
           context.response.headers.merge!(response_data[:headers])
@@ -39,17 +39,17 @@ module Tele
     end
 
     def set_webhook(uri : URI, max_connections = 40, allowed_updates = nil)
-      Requests::SetWebhook.new(uri.to_s, max_connections, allowed_updates).send(token)
+      Requests::SetWebhook.new(uri.to_s, max_connections, allowed_updates).send(@token)
       logger.info(log_header + "webhook set to " + uri.to_s.colorize.mode(:bold).to_s)
     end
 
     def listen
-      logger.info(log_header + "listening on " + "#{@host}:#{port}".colorize.mode(:bold).to_s)
+      logger.info(log_header + "listening on " + "#{@host}:#{@port}".colorize.mode(:bold).to_s)
 
       @server.listen
     end
 
-    protected getter token, port, logger
+    protected getter logger
 
     # Prepended to most of bot's logs ("INFO -- : LogHeader @ text")
     protected def log_header
