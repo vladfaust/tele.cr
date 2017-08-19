@@ -10,7 +10,16 @@ module Tele
       def to_h
         h = Hash(String, String | File).new
         {% for key, value in mapping %}
-          h["{{key}}"] = (@{{key.id}}.is_a?(Tele::Type) ? @{{key.id}}.as(Tele::Type).to_json : ({{key.id}}.is_a?(File) ? @{{key.id}}.as(File) : @{{key.id}}.to_s)) || {{value[:default].id}}.to_s
+          h["{{key}}"] = case @{{key.id}}
+          when Tele::Type
+            @{{key.id}}.as(Tele::Type).to_json
+          when File
+            @{{key.id}}.as(File)
+          when Array(Tele::Types::InlineQueryResult)
+            "[" + (@{{key.id}}.as(Array(Tele::Types::InlineQueryResult)).map &.as(Tele::Type).to_json).join(",") + "]"
+          else
+            (@{{key.id}} || {{value[:default].id}}).to_s
+          end
         {% end %}
         h["method"] = @@method
         h
