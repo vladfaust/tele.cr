@@ -4,7 +4,7 @@ require "./keyboard_button"
 
 module Tele
   module Types
-    class ReplyKeyboardMarkup < Type
+    struct ReplyKeyboardMarkup < Type
       mapping({
         keyboard:          {type: Array(Array(KeyboardButton) | KeyboardButton)},
         resize_keyboard:   {type: Bool?},

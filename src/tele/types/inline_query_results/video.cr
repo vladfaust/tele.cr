@@ -3,7 +3,7 @@ require "../inline_query_result"
 module Tele
   module Types
     module InlineQueryResults
-      class Video < InlineQueryResult
+      struct Video < InlineQueryResult
         mapping({
           id:                    {type: String},
           video_url:             {type: String},

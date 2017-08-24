@@ -3,7 +3,7 @@ require "./order_info"
 
 module Tele
   module Types
-    class SuccessfulPayment < Type
+    struct SuccessfulPayment < Type
       mapping({
         currency:                   {type: String},
         total_amount:               {type: Int32},

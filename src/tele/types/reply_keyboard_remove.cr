@@ -3,7 +3,7 @@ require "./macros"
 
 module Tele
   module Types
-    class ReplyKeyboardRemove < Type
+    struct ReplyKeyboardRemove < Type
       mapping({
         remove_keyboard: {type: Bool, default: true},
         selective:       {type: Bool?},

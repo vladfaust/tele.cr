@@ -2,7 +2,7 @@ require "./input_message_content"
 
 module Tele
   module Types
-    class InputVenueMessageContent < InputMessageContent
+    struct InputVenueMessageContent < InputMessageContent
       mapping({
         latitude:     {type: Float64},
         longitude:    {type: Float64},

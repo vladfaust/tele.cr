@@ -3,7 +3,7 @@ require "../inline_query_result"
 module Tele
   module Types
     module InlineQueryResults
-      class Photo < InlineQueryResult
+      struct Photo < InlineQueryResult
         mapping({
           id:                    {type: String},
           photo_url:             {type: String},

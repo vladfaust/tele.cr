@@ -2,7 +2,7 @@ require "../type"
 
 module Tele
   module Types
-    class Voice < Type
+    struct Voice < Type
       mapping({
         file_id:   {type: String},
         duration:  {type: Int32},

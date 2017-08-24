@@ -3,7 +3,7 @@ require "../inline_query_result"
 module Tele
   module Types
     module InlineQueryResults
-      class CachedAudio < InlineQueryResult
+      struct CachedAudio < InlineQueryResult
         mapping({
           id:                    {type: String},
           audio_file_id:         {type: String},

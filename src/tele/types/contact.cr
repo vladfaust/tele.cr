@@ -2,7 +2,7 @@ require "../type"
 
 module Tele
   module Types
-    class Contact < Type
+    struct Contact < Type
       mapping({
         phone_number: {type: String},
         first_name:   {type: String},

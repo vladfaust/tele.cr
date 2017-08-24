@@ -13,13 +13,12 @@ require "./video_note"
 require "./contact"
 require "./location"
 require "./venue"
-require "./pinned_message"
 require "./invoice"
 require "./successful_payment"
 
 module Tele
   module Types
-    struct Message < Type
+    struct PinnedMessage < Type
       mapping({
         message_id:              {type: Int32},
         date:                    {type: Int32},
@@ -54,7 +53,6 @@ module Tele
         channel_chat_created:    {type: Bool?},
         migrate_to_chat_id:      {type: Int32?},
         migrate_from_chat_id:    {type: Int32?},
-        pinned_message:          {type: PinnedMessage?},
         invoice:                 {type: Invoice?},
         successful_payment:      {type: SuccessfulPayment?},
       })

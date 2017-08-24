@@ -5,7 +5,7 @@ require "./animation"
 
 module Tele
   module Types
-    class Game < Type
+    struct Game < Type
       mapping({
         title:         {type: String},
         description:   {type: String},

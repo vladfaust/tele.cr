@@ -3,7 +3,7 @@ require "../inline_query_result"
 module Tele
   module Types
     module InlineQueryResults
-      class Voice < InlineQueryResult
+      struct Voice < InlineQueryResult
         mapping({
           id:                    {type: String},
           voice_url:             {type: String},

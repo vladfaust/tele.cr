@@ -2,7 +2,7 @@ require "../type"
 
 module Tele
   module Types
-    class User < Type
+    struct User < Type
       mapping({
         id:            {type: Int32},
         first_name:    {type: String},

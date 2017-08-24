@@ -3,7 +3,7 @@ require "../inline_query_result"
 module Tele
   module Types
     module InlineQueryResults
-      class CachedSticker < InlineQueryResult
+      struct CachedSticker < InlineQueryResult
         mapping({
           id:                    {type: String},
           sticker_file_id:       {type: String},

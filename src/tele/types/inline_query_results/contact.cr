@@ -3,7 +3,7 @@ require "../inline_query_result"
 module Tele
   module Types
     module InlineQueryResults
-      class Contact < InlineQueryResult
+      struct Contact < InlineQueryResult
         mapping({
           id:                    {type: String},
           phone_number:          {type: String},

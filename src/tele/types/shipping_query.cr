@@ -4,7 +4,7 @@ require "./shipping_address"
 
 module Tele
   module Types
-    class ShippingQuery < Type
+    struct ShippingQuery < Type
       mapping({
         id:               {type: String},
         from:             {type: User},

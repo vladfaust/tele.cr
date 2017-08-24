@@ -4,7 +4,7 @@ require "./inline_keyboard_markup"
 
 module Tele
   module Types
-    abstract class InlineQueryResult < Type
+    abstract struct InlineQueryResult < Type
     end
   end
 end

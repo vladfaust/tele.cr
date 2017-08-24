@@ -2,7 +2,7 @@ require "../type"
 
 module Tele
   module Types
-    class WebhookInfo < Type
+    struct WebhookInfo < Type
       mapping({
         url:                    {type: String},
         has_custom_certificate: {type: Bool},

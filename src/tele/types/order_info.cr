@@ -3,7 +3,7 @@ require "./shipping_address"
 
 module Tele
   module Types
-    class OrderInfo < Type
+    struct OrderInfo < Type
       mapping({
         name:             {type: String?},
         phone_number:     {type: String?},

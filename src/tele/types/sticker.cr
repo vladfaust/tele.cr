@@ -3,7 +3,7 @@ require "./photo_size"
 
 module Tele
   module Types
-    class Sticker < Type
+    struct Sticker < Type
       mapping({
         file_id:   {type: String},
         width:     {type: Int32},

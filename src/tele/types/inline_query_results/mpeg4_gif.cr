@@ -3,7 +3,7 @@ require "../inline_query_result"
 module Tele
   module Types
     module InlineQueryResults
-      class Mpeg4Gif < InlineQueryResult
+      struct Mpeg4Gif < InlineQueryResult
         mapping({
           id:                    {type: String},
           mpeg4_url:             {type: String},

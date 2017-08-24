@@ -3,7 +3,7 @@ require "./photo_size"
 
 module Tele
   module Types
-    class VideoNote < Type
+    struct VideoNote < Type
       mapping({
         file_id:   {type: String},
         length:    {type: Int32},

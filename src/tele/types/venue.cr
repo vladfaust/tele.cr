@@ -3,7 +3,7 @@ require "./location"
 
 module Tele
   module Types
-    class Venue < Type
+    struct Venue < Type
       mapping({
         location:      {type: Location},
         title:         {type: String},

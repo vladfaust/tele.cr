@@ -3,7 +3,7 @@ require "./photo_size"
 
 module Tele
   module Types
-    class Animation < Type
+    struct Animation < Type
       mapping({
         file_id:   {type: String},
         thumb:     {type: PhotoSize?},

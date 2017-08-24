@@ -4,7 +4,7 @@ require "./order_info"
 
 module Tele
   module Types
-    class PreCheckoutQuery < Type
+    struct PreCheckoutQuery < Type
       mapping({
         id:                 {type: String},
         from:               {type: User},

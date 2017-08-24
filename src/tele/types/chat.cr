@@ -3,7 +3,7 @@ require "./chat_photo"
 
 module Tele
   module Types
-    class Chat < Type
+    struct Chat < Type
       mapping({
         id:                             {type: Int32},
         type:                           {type: String},

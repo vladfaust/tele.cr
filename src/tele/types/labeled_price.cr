@@ -2,7 +2,7 @@ require "../type"
 
 module Tele
   module Types
-    class LabeledPrice < Type
+    struct LabeledPrice < Type
       mapping({
         label:  {type: String},
         amount: {type: Int32},

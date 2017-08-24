@@ -2,7 +2,7 @@ require "../type"
 
 module Tele
   module Types
-    class ShippingAddress < Type
+    struct ShippingAddress < Type
       mapping({
         country_code: {type: String},
         state:        {type: String},

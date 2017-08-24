@@ -2,7 +2,7 @@ require "../type"
 
 module Tele
   module Types
-    class File < Type
+    struct File < Type
       mapping({
         file_id:   {type: String},
         file_size: {type: Int32?},

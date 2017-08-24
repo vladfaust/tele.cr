@@ -8,7 +8,7 @@ require "./pre_checkout_query"
 
 module Tele
   module Types
-    class Update < Type
+    struct Update < Type
       mapping({
         update_id:            {type: Int32},
         message:              {type: Message?},

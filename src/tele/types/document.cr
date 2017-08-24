@@ -3,7 +3,7 @@ require "./photo_size"
 
 module Tele
   module Types
-    class Document < Type
+    struct Document < Type
       mapping({
         file_id:   {type: String},
         thumb:     {type: PhotoSize?},

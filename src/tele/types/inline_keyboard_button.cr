@@ -3,7 +3,7 @@ require "./macros"
 
 module Tele
   module Types
-    class InlineKeyboardButton < Type
+    struct InlineKeyboardButton < Type
       mapping({
         text:                {type: String},
         url:                 {type: String?},

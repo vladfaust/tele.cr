@@ -2,7 +2,7 @@ require "../type"
 
 module Tele
   module Types
-    class PhotoSize < Type
+    struct PhotoSize < Type
       mapping({
         file_id:   {type: String},
         width:     {type: Int32},
