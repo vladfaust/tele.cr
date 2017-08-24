@@ -3,7 +3,7 @@ require "./user"
 
 module Tele
   module Types
-    class MessageEntity < Type
+    struct MessageEntity < Type
       mapping({
         type:   {type: String},
         offset: {type: Int32},

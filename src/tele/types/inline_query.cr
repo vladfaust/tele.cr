@@ -4,7 +4,7 @@ require "./location"
 
 module Tele
   module Types
-    class InlineQuery < Type
+    struct InlineQuery < Type
       mapping({
         id:       {type: String},
         from:     {type: User},

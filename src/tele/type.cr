@@ -1,7 +1,7 @@
 require "json"
 
 module Tele
-  abstract class Type
+  abstract struct Type
     macro define_initializer(mapping)
       def initialize(
         {% for key, value in mapping %}

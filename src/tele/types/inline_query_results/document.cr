@@ -3,7 +3,7 @@ require "../inline_query_result"
 module Tele
   module Types
     module InlineQueryResults
-      class Document < InlineQueryResult
+      struct Document < InlineQueryResult
         mapping({
           id:                    {type: String},
           title:                 {type: String},

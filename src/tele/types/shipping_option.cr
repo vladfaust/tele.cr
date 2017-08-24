@@ -3,7 +3,7 @@ require "./labeled_price"
 
 module Tele
   module Types
-    class ShippingOption < Type
+    struct ShippingOption < Type
       mapping({
         id:     {type: String},
         title:  {type: String},

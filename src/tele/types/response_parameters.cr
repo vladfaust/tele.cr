@@ -1,6 +1,6 @@
 module Tele
   module Types
-    class ResponseParameters < Type
+    struct ResponseParameters < Type
       mapping({
         migrate_to_chat_id: {type: Int32?},
         retry_after:        {type: Int32?},

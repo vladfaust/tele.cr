@@ -3,7 +3,7 @@ require "../inline_query_result"
 module Tele
   module Types
     module InlineQueryResults
-      class Venue < InlineQueryResult
+      struct Venue < InlineQueryResult
         mapping({
           id:                    {type: String},
           latitude:              {type: Float64},

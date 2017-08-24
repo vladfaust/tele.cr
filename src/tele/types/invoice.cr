@@ -2,7 +2,7 @@ require "../type"
 
 module Tele
   module Types
-    class Invoice < Type
+    struct Invoice < Type
       mapping({
         title:           {type: String},
         description:     {type: String},

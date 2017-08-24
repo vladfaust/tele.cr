@@ -1,7 +1,6 @@
 require "../type"
 require "./user"
 require "./chat"
-require "./reply_to_message"
 require "./message_entity"
 require "./audio"
 require "./document"
@@ -13,13 +12,12 @@ require "./video_note"
 require "./contact"
 require "./location"
 require "./venue"
-require "./pinned_message"
 require "./invoice"
 require "./successful_payment"
 
 module Tele
   module Types
-    struct Message < Type
+    struct ReplyToMessage < Type
       mapping({
         message_id:              {type: Int32},
         date:                    {type: Int32},
@@ -29,7 +27,6 @@ module Tele
         forward_from_chat:       {type: Chat?},
         forward_from_message_id: {type: Int32?},
         forward_date:            {type: Int32?},
-        reply_to_message:        {type: ReplyToMessage?},
         edit_date:               {type: Int32?},
         text:                    {type: String?},
         entities:                {type: Array(MessageEntity)?},
@@ -54,7 +51,6 @@ module Tele
         channel_chat_created:    {type: Bool?},
         migrate_to_chat_id:      {type: Int32?},
         migrate_from_chat_id:    {type: Int32?},
-        pinned_message:          {type: PinnedMessage?},
         invoice:                 {type: Invoice?},
         successful_payment:      {type: SuccessfulPayment?},
       })

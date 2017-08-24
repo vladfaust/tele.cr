@@ -3,7 +3,7 @@ require "./photo_size"
 
 module Tele
   module Types
-    class Video < Type
+    struct Video < Type
       mapping({
         file_id:   {type: String},
         width:     {type: Int32},

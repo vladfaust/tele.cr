@@ -2,7 +2,7 @@ require "../type"
 
 module Tele
   module Types
-    class Location < Type
+    struct Location < Type
       mapping({
         longitude: {type: Float64},
         latitude:  {type: Float64},

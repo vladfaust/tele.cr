@@ -4,7 +4,7 @@ require "./location"
 
 module Tele
   module Types
-    class ChosenInlineResult < Type
+    struct ChosenInlineResult < Type
       mapping({
         result_id:         {type: String},
         from:              {type: User},

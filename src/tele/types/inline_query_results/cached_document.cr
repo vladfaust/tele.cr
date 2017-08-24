@@ -3,7 +3,7 @@ require "../inline_query_result"
 module Teleg
   module Types
     module InlineQueryResults
-      class CachedDocument < InlineQueryResult
+      struct CachedDocument < InlineQueryResult
         mapping({
           id:                    {type: String},
           title:                 {type: String},

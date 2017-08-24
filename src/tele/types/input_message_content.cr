@@ -2,7 +2,7 @@ require "../type"
 
 module Tele
   module Types
-    abstract class InputMessageContent < Type
+    abstract struct InputMessageContent < Type
     end
   end
 end

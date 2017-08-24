@@ -4,7 +4,7 @@ require "./message"
 
 module Tele
   module Types
-    class CallbackQuery < Type
+    struct CallbackQuery < Type
       mapping({
         id:                {type: String},
         from:              {type: User},

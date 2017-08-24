@@ -3,7 +3,7 @@ require "./user"
 
 module Tele
   module Types
-    class GameHighScore < Type
+    struct GameHighScore < Type
       mapping({
         position: {type: Int32},
         user:     {type: User},

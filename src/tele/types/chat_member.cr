@@ -2,7 +2,7 @@ require "../type"
 
 module Tele
   module Types
-    class ChatMember < Type
+    struct ChatMember < Type
       mapping({
         user:                      {type: User},
         status:                    {type: String},
