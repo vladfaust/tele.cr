@@ -2,8 +2,8 @@ require "./client"
 
 module Tele
   abstract class Request(CastResponseTo)
-    def send(token : String)
-      Client.new(token).request(@@method, self.to_h, cast_to: CastResponseTo)
+    def send(token : String, logger : Logger)
+      Client.new(token, logger).request(@@method, self.to_h, cast_to: CastResponseTo)
     end
 
     macro define_hash_mapping(mapping)

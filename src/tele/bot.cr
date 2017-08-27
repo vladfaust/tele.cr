@@ -39,7 +39,7 @@ module Tele
     end
 
     def set_webhook(uri : URI, max_connections = 40, allowed_updates = nil)
-      Requests::SetWebhook.new(uri.to_s, max_connections, allowed_updates).send(@token)
+      Requests::SetWebhook.new(uri.to_s, max_connections, allowed_updates).send(@token, logger)
       logger.info(log_header + "webhook set to " + uri.to_s.colorize.mode(:bold).to_s)
     end
 
