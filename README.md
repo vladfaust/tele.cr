@@ -10,7 +10,7 @@ Add this to your application's `shard.yml`:
 dependencies:
   tele:
     github: vladfaust/tele
-    branch: development
+    version: 0.1.0
 ```
 
 ## Usage
@@ -41,7 +41,7 @@ bot = ExampleBot.new("BOT_API_TOKEN", 5000, Logger.new(STDOUT))
 bot.set_webhook(URI.new(scheme: "https", host: "example.com"))
 bot.listen
 
-# => ExampleBot @ using Tele v0.1.2 by @vladfaust
+# => ExampleBot @ using Tele v0.1.0 by @vladfaust
 # => ExampleBot @ webhook set to https://example.com
 # => ExampleBot @ listening on port 5000
 # => ExampleBot @ incoming text message from user @vladfaust (id 42): "/start"
@@ -68,6 +68,10 @@ So there are no any tests for Tele at the moment.
 - [ ] User state
 - [ ] I18n
 - [ ] [getUpdates](https://core.telegram.org/bots/api#getupdates)
+
+## Projects using Tele
+
+- [soundmemesbot](https://github.com/vladfaust/soundmemes.cr)
 
 ## Contributing
 
