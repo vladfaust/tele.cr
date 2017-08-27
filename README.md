@@ -69,6 +69,12 @@ So there are no any tests for Tele at the moment.
 - [ ] I18n
 - [ ] [getUpdates](https://core.telegram.org/bots/api#getupdates)
 
+### Request groups to implement
+
+- [ ] [Stickers](https://core.telegram.org/bots/api#stickers)
+- [ ] [Payments](https://core.telegram.org/bots/api#payments)
+- [ ] [Games](https://core.telegram.org/bots/api#games)
+
 ## Projects using Tele
 
 - [soundmemesbot](https://github.com/vladfaust/soundmemes.cr)
