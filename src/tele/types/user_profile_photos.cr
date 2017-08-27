@@ -3,7 +3,7 @@ require "./photo_size"
 
 module Tele
   module Types
-    struct UserProfilePhoto < Type
+    struct UserProfilePhotos < Type
       mapping({
         total_count: {type: Int32},
         photos:      {type: Array(Array(PhotoSize))},
