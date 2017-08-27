@@ -24,11 +24,14 @@ module Tele
         next context.response.close if handler == nil
 
         if response = handler.not_nil!.call(update)
-          response_data = Tele::Client.new(@token).build_request(response.to_h)
-          @logger.debug(log_header + "responding with #{response_data}")
-
-          context.response.headers.merge!(response_data[:headers])
-          context.response.print(response_data[:body])
+          if response.is_a?(Array)
+            # Answer the webhook with the first response in the array
+            response.shift.tap { |r| answer_webhook(context, r) }
+            # Send others via Client
+            response.each &.send(@token, logger)
+          else
+            answer_webhook(context, response.as(Request))
+          end
         else
           # If there is no response, just answer with 200
           @logger.debug(log_header + "empty response")
@@ -61,5 +64,13 @@ module Tele
     end
 
     private abstract def handle(update : Tele::Types::Update) : Tele::Handler.class | Proc | ::Nil
+
+    private def answer_webhook(context, response : Request)
+      response_data = Tele::Client.new(@token).build_request(response.to_h)
+      logger.debug(log_header + "responding with #{response_data}")
+
+      context.response.headers.merge!(response_data[:headers])
+      context.response.print(response_data[:body])
+    end
   end
 end
