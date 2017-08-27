@@ -3,7 +3,7 @@ require "./client"
 module Tele
   abstract class Request(CastResponseTo)
     def send(token : String, logger : Logger)
-      Client.new(token, logger).request(@@method, self.to_h, cast_to: CastResponseTo)
+      Client.new(token, logger).request(method, self.to_h, cast_to: CastResponseTo)
     end
 
     macro define_hash_mapping(mapping)
@@ -21,7 +21,7 @@ module Tele
             (@{{key.id}} || {{value[:default].id}}).to_s
           end
         {% end %}
-        h["method"] = @@method
+        h["method"] = method
         h
       end
     end
@@ -33,7 +33,7 @@ module Tele
           {% possible_file_variables << key if "#{value[:type]}".includes?("InputFile") %}
           @{{key.id}} : {{value[:type].id}}{{ '?'.id if value[:nilable] }}{{ " = #{default}".id if default != false }},
         {% end %}
-          @method = @@method
+        @method = api_method_name
       )
       end
     end
@@ -50,8 +50,12 @@ module Tele
       define_hash_mapping({{mapping}})
     end
 
+    abstract def api_method_name
+
     macro inherited
-      @@method : String = {{@type.name}}.to_s.split(":").last.sub &.downcase
+      def api_method_name
+        @@api_method_name ||= ({{@type.name}}.to_s.split(":").last.sub &.downcase).as(String)
+      end
     end
   end
 end
