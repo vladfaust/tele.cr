@@ -6,6 +6,7 @@ require "json"
 require "mime"
 require "logger"
 require "./types/file"
+require "./client/errors"
 
 module Tele
   # A basic HTTP(S) Client for Telegam API
@@ -58,7 +59,6 @@ module Tele
       end
     end
 
-    # TODO: Handle Telegram error responses
     def request(method, payload = {} of String => String, cast_to : Type.class | Nil.class | Nil = nil)
       id = rand(1000)
       request = build_request(payload)
@@ -67,6 +67,8 @@ module Tele
 
       response = @client.post("/bot" + @token + "/" + method, **request)
 
+      # OPTIMIZE:
+      #   body = JSON.parse(response.body.to_s)
       body = response.body.to_s
       @logger.debug("Tele::Client @ response ##{id}: #{body.to_s}")
 
@@ -76,6 +78,8 @@ module Tele
         else
           JSON.parse(body)
         end
+      else
+        raise_error(response.status_code, JSON.parse(body))
       end
     end
 
