@@ -59,7 +59,7 @@ module Tele
       end
     end
 
-    def request(method, payload = {} of String => String, cast_to : Type.class | Nil.class | Nil = nil)
+    def request(method, payload = {} of String => String, cast_to : Type.class | Nil.class | Nil = nil, raise raise_on_error? : Bool = false)
       id = rand(1000)
       request = build_request(payload)
 
@@ -79,7 +79,8 @@ module Tele
           JSON.parse(body)
         end
       else
-        raise_error(response.status_code, JSON.parse(body))
+        raise_error(response.status_code, JSON.parse(body)) if raise_on_error?
+        JSON.parse(body)
       end
     end
 
