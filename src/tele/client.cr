@@ -67,20 +67,18 @@ module Tele
 
       response = @client.post("/bot" + @token + "/" + method, **request)
 
-      # OPTIMIZE:
-      #   body = JSON.parse(response.body.to_s)
-      body = response.body.to_s
+      body = JSON.parse(response.body.to_s)
       @logger.debug("Tele::Client @ response ##{id}: #{body.to_s}")
 
       if response.status_code == 200
         if cast_to && !cast_to.nilable?
-          cast_to.from_json(JSON.parse(body)["result"].to_json)
+          cast_to.from_json(body["result"].to_json)
         else
-          JSON.parse(body)
+          body
         end
       else
-        raise_error(response.status_code, JSON.parse(body)) if raise_on_error?
-        JSON.parse(body)
+        raise_error(response.status_code, body) if raise_on_error?
+        body
       end
     end
 
