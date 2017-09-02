@@ -1,4 +1,5 @@
 require "./client"
+require "./types/inline_query_result"
 
 module Tele
   abstract class Request(CastResponseTo)
