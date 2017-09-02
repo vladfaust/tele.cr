@@ -62,9 +62,9 @@ So there are no any tests for Tele at the moment.
 - [x] Sending files
 - [x] Downloading files
 - [x] Multiple requests in one handler
+- [x] Broadcasting with [Tele::Broadcast](https://github.com/vladfaust/tele-broadcast.cr)
 - [ ] HTTP Client pooling
 - [ ] Asynchronous requests
-- [ ] Broadcasting
 - [ ] User state
 - [ ] I18n
 - [ ] [getUpdates](https://core.telegram.org/bots/api#getupdates)
