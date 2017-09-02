@@ -9,8 +9,8 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   tele:
-    github: vladfaust/tele
-    version: 0.1.0
+    github: vladfaust/tele.cr
+    version: 0.1.1
 ```
 
 ## Usage
