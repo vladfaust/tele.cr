@@ -1,5 +1,4 @@
 require "../../src/tele/requests/send_voice"
-require "../keyboards/like"
 
 module Handlers
   # This Responder sends example Voice from local File
@@ -10,7 +9,7 @@ module Handlers
       R::SendVoice.new(
         chat_id: message.chat.id,
         voice: file,
-        reply_markup: Keyboards::Like.new.to_type,
+        reply_markup: Tele::Keyboards::Inline.new([Tele::Keyboards::Inline::Button.new("👍", callback_data: "like")]).to_type,
       )
     end
   end

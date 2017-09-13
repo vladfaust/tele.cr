@@ -3,7 +3,7 @@ require "../types/inline_keyboard_markup"
 
 module Tele
   module Keyboards
-    abstract class Inline
+    class Inline
       class Button
         def initialize(@text : String, @url : String? = nil, @callback_data : String? = nil, @switch_inline_query : String? = nil)
         end
@@ -13,7 +13,11 @@ module Tele
         end
       end
 
-      @buttons = Array(Button | Array(Button)).new
+      property buttons = Array(Button | Array(Button)).new
+
+      def initialize(buttons)
+        @buttons.push(buttons)
+      end
 
       def to_type
         buttons = @buttons.map { |b| b.is_a?(Button) ? b.to_type : b.map &.to_type }

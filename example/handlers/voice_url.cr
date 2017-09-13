@@ -8,6 +8,7 @@ module Handlers
       R::SendVoice.new(
         chat_id: message.chat.id,
         voice: EXAMPLE_VOICE_URL,
+        reply_markup: Tele::Keyboards::Reply.new([Tele::Keyboards::Reply::Button.new("/start")], one_time_keyboard: true).to_type
       )
     end
   end

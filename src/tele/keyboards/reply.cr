@@ -3,7 +3,7 @@ require "../types/reply_keyboard_markup"
 
 module Tele
   module Keyboards
-    abstract class Reply
+    class Reply
       class Button
         def initialize(@text : String, @request_contact : Bool? = nil, @request_location : Bool? = nil)
         end
@@ -13,9 +13,13 @@ module Tele
         end
       end
 
-      @buttons = Array(Button | Array(Button)).new
+      property buttons = Array(Button | Array(Button)).new
 
       # *resize_keyboard* defaults to true because I hate these stupid half-screen sized keyboards!
+      def initialize(buttons, @resize_keyboard : Bool? = true, @one_time_keyboard : Bool? = nil, @selective : Bool? = nil)
+        @buttons.push(buttons)
+      end
+
       def initialize(@resize_keyboard : Bool? = true, @one_time_keyboard : Bool? = nil, @selective : Bool? = nil)
       end
 
