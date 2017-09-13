@@ -67,7 +67,7 @@ module Tele
 
     private def answer_webhook(context, response : Request)
       response_data = Tele::Client.new(@token).build_request(response.to_h)
-      logger.debug(log_header + "responding with #{response_data}")
+      logger.debug(log_header + "responding with #{response.to_h}")
 
       context.response.headers.merge!(response_data[:headers])
       context.response.print(response_data[:body])

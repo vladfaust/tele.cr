@@ -63,7 +63,7 @@ module Tele
       id = rand(1000)
       request = build_request(payload)
 
-      @logger.debug("Tele::Client @ post request ##{id} to /#{method} with payload #{request}")
+      @logger.debug("Tele::Client @ post request ##{id} to /#{method} with payload #{payload}")
 
       response = @client.post("/bot" + @token + "/" + method, **request)
 
