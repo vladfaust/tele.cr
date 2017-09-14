@@ -68,15 +68,16 @@ OptionParser.parse! do |parser|
   parser.on("-p PORT", "--port=PORT", "(Optional) Local port to listen on (usually 5000)") { |p| port = p.to_i }
   parser.on("-h", "--help", "Show this help") { puts parser }
   parser.missing_option do |option|
-    if %w(-t -h).includes?(option)
+    if %w(-t -h -p).includes?(option)
       puts parser
       exit
     end
   end
 end
 
-if token && port && host
-  bot = ExampleBot.new(token, port, Logger.new(STDOUT).tap { |l| l.level = Logger::DEBUG })
-  bot.set_webhook(URI.new(scheme: "https", host: host))
-  bot.listen
-end
+raise ArgumentError.new("ERROR: token argument is mandatory (see --help)") if token.empty?
+raise ArgumentError.new("ERROR: host argument is mandatory (see --help)") if host.empty?
+
+bot = ExampleBot.new(token, port, Logger.new(STDOUT).tap { |l| l.level = Logger::DEBUG })
+bot.set_webhook(URI.new(scheme: "https", host: host))
+bot.listen
