@@ -3,8 +3,8 @@ require "./types/inline_query_result"
 
 module Tele
   abstract class Request(CastResponseTo)
-    def send(token : String, logger : Logger)
-      Client.new(token, logger).request(method, self.to_h, cast_to: CastResponseTo)
+    def send(token : String, logger : Logger, raise raise_on_error? : Bool = false)
+      Client.new(token, logger).request(method, self.to_h, cast_to: CastResponseTo, raise: raise_on_error?)
     end
 
     macro define_hash_mapping(mapping)
