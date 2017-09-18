@@ -3,6 +3,7 @@ require "./types/inline_query_result"
 
 module Tele
   abstract class Request(CastResponseTo)
+    # DEPRECATED: See https://github.com/vladfaust/tele.cr/issues/17
     def send(token : String, logger : Logger, raise raise_on_error? : Bool = false)
       Client.new(token, logger).request(method, self.to_h, cast_to: CastResponseTo, raise: raise_on_error?)
     end
