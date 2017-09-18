@@ -12,6 +12,8 @@ module Tele
           raise MessageNotModifiedError.new
         when /ENTITY_MENTION_USER_INVALID/
           raise InvalidUserMentionError.new
+        when /need administrator rights in the channel chat/
+          raise NotAnAdminError.new
         end
       when 403
         raise BlockedByUserError.new
@@ -32,6 +34,9 @@ module Tele
     end
 
     class InvalidUserMentionError < Exception
+    end
+
+    class NotAnAdminError < Exception
     end
 
     class BlockedByUserError < Exception
