@@ -12,7 +12,7 @@ Add this to your application's `shard.yml`:
 dependencies:
   tele:
     github: vladfaust/tele.cr
-    version: ~> 0.1.3
+    version: ~> 0.1.4
 ```
 
 ## Usage
