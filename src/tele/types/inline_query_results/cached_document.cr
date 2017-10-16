@@ -1,6 +1,6 @@
 require "../inline_query_result"
 
-module Teleg
+module Tele
   module Types
     module InlineQueryResults
       struct CachedDocument < InlineQueryResult
