@@ -16,26 +16,35 @@ module Tele
 
     # Initialize a new instance of the bot and bind it to *port*.
     # To start listening to updates, use `#listen`.
-    def initialize(@token : String, @port : Int32, @logger : Logger, @host : String = "127.0.0.1")
+    def initialize(@token : String, @port : Int32, @logger : Logger, @host : String = "127.0.0.1", rescue rescue_unhandled_exceptions = false)
       @server = HTTP::Server.new(@host, @port, middleware) do |context|
-        update = Tele::Types::Update.from_json(context.request.body.not_nil!)
+        begin
+          update = Tele::Types::Update.from_json(context.request.body.not_nil!)
 
-        handler = handle(update)
-        next context.response.close if handler == nil
+          handler = handle(update)
+          next context.response.close if handler == nil
 
-        if response = handler.not_nil!.call(update)
-          if response.is_a?(Array)
-            # Answer the webhook with the first response in the array
-            response.shift.tap { |r| answer_webhook(context, r) }
-            # Send others via Client
-            response.each &.send(@token, logger)
+          if response = handler.not_nil!.call(update)
+            if response.is_a?(Array)
+              # Answer the webhook with the first response in the array
+              response.shift.tap { |r| answer_webhook(context, r) }
+              # Send others via Client
+              response.each &.send(@token, logger)
+            else
+              answer_webhook(context, response.as(Request))
+            end
           else
-            answer_webhook(context, response.as(Request))
+            # If there is no response, just answer with 200
+            @logger.debug(log_header + "empty response")
+            context.response.close
           end
-        else
-          # If there is no response, just answer with 200
-          @logger.debug(log_header + "empty response")
-          context.response.close
+        rescue ex
+          if rescue_unhandled_exceptions
+            @logger.error(ex)
+            context.response.close
+          else
+            raise ex
+          end
         end
       end
       logger.info(log_header + "using Tele v#{VERSION} by @vladfaust")
