@@ -1,8 +1,8 @@
-<img src="https://user-images.githubusercontent.com/7955682/30406425-5adb7b5e-98fa-11e7-80d3-2a83800405f3.png" height="64">
+# Tele
 
-# [![Build Status](https://travis-ci.org/vladfaust/tele.cr.svg?branch=master)](https://travis-ci.org/vladfaust/tele.cr) [![Docs](https://img.shields.io/badge/docs-unavailable-lightgray.svg)](https://vladfaust.com/tele.cr) [![Dependency Status](https://shards.rocks/badge/github/vladfaust/tele.cr/status.svg)](https://shards.rocks/github/vladfaust/tele.cr) [![GitHub release](https://img.shields.io/github/release/vladfaust/tele.cr.svg)](https://github.com/vladfaust/tele.cr/releases)
+A convenient [Telegram Bot API](https://core.telegram.org/bots/api) framework.
 
-[Tele](https://github.com/vladfaust/time_format.cr) is a convenient [Telegram Bot API](https://core.telegram.org/bots/api) framework.
+[![Build Status](https://travis-ci.org/vladfaust/tele.cr.svg?branch=master)](https://travis-ci.org/vladfaust/tele.cr) [![Docs](https://img.shields.io/badge/docs-unavailable-lightgray.svg)](https://vladfaust.com/tele.cr) [![Dependency Status](https://shards.rocks/badge/github/vladfaust/tele.cr/status.svg)](https://shards.rocks/github/vladfaust/tele.cr) [![GitHub release](https://img.shields.io/github/release/vladfaust/tele.cr.svg)](https://github.com/vladfaust/tele.cr/releases)
 
 ## Installation
 
@@ -95,8 +95,3 @@ So there are no any tests for Tele at the moment.
 ## Contributors
 
 - [@vladfaust](https://github.com/vladfaust) Vlad Faust - creator, maintainer
-
-## Credits
-
-- Logo font: [HVD Comic Serif Pro](https://www.fontsquirrel.com/fonts/hvd-comic-serif-pro)
-- Logo image: [EmojiOne](https://www.emojione.com/)
