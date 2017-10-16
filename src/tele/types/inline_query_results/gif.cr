@@ -7,10 +7,10 @@ module Tele
         mapping({
           id:                    {type: String},
           gif_url:               {type: String},
+          thumb_url:             {type: String},
           gif_width:             {type: Int32?},
           gif_height:            {type: Int32?},
           gif_duration:          {type: Int32?},
-          thumb_url:             {type: String},
           title:                 {type: String?},
           caption:               {type: String?},
           reply_markup:          {type: InlineKeyboardMarkup?},

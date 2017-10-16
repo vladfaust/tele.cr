@@ -7,9 +7,9 @@ module Tele
         mapping({
           id:                    {type: String},
           title:                 {type: String},
-          caption:               {type: String?},
           document_url:          {type: String},
           mime_type:             {type: String},
+          caption:               {type: String?},
           description:           {type: String?},
           reply_markup:          {type: InlineKeyboardMarkup?},
           input_message_content: {type: InputMessageContent?},
